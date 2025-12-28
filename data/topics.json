@@ -1,0 +1,28 @@
+{
+    "topics": [
+        {"number": 1, "title": "Course Overview and Expectations", "icon": "target"},
+        {"number": 2, "title": "Communicating Technical Concepts", "icon": "speech"},
+        {"number": 3, "title": "AWS Environment and SageMaker Studio", "icon": "cloud"},
+        {"number": 4, "title": "Responsible AI and Data Ethics", "icon": "scale"},
+        {"number": 5, "title": "Introduction to Supervised Learning", "icon": "chart"},
+        {"number": 6, "title": "Linear Learner: How It Works", "icon": "chart"},
+        {"number": 7, "title": "Data Preprocessing for Linear Learner", "icon": "doc"},
+        {"number": 8, "title": "Lab: Training Linear Learner", "icon": "brain"},
+        {"number": 9, "title": "Lab: Deploying Endpoints", "icon": "rocket"},
+        {"number": 10, "title": "Introduction to NLP", "icon": "speech"},
+        {"number": 11, "title": "BlazingText: How It Works", "icon": "doc"},
+        {"number": 12, "title": "Data Preprocessing for NLP", "icon": "doc"},
+        {"number": 13, "title": "Lab: Training BlazingText", "icon": "brain"},
+        {"number": 14, "title": "Lab: NLP Inference", "icon": "brain"},
+        {"number": 15, "title": "Introduction to Unsupervised Learning", "icon": "network"},
+        {"number": 16, "title": "Dimensionality Reduction with PCA", "icon": "chart"},
+        {"number": 17, "title": "K-Means Clustering: How It Works", "icon": "network"},
+        {"number": 18, "title": "Lab: PCA to K-Means Pipeline", "icon": "network"},
+        {"number": 19, "title": "Advanced Clustering Topics", "icon": "network"},
+        {"number": 20, "title": "Pitch Deck Workshop", "icon": "lightbulb"},
+        {"number": 21, "title": "Pitch Competition I", "icon": "trophy"},
+        {"number": 22, "title": "Pitch Competition II", "icon": "trophy"},
+        {"number": 23, "title": "Pitch Competition III", "icon": "trophy"},
+        {"number": 24, "title": "Course Wrap-up", "icon": "target"}
+    ]
+}
