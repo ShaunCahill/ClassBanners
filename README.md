@@ -2,17 +2,85 @@
 
 Generate customizable class banners with Python.
 
+## Requirements
+
+- Python 3.9 or higher
+
 ## Installation
 
-```bash
-# Install from source
-pip install -e .
+### Step 1: Clone the repository
 
-# Or install dependencies only
-pip install -r requirements.txt
+```bash
+git clone https://github.com/ShaunCahill/ClassBanners.git
+cd ClassBanners
 ```
 
-## Quick Start
+### Step 2: Create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+### Step 3: Activate the virtual environment
+
+**Linux/macOS:**
+```bash
+source venv/bin/activate
+```
+
+**Windows:**
+```bash
+venv\Scripts\activate
+```
+
+### Step 4: Install the package
+
+```bash
+pip install -e .
+```
+
+## Usage
+
+### Command Line
+
+Generate a banner with a title:
+
+```bash
+classbanners "Welcome to Class"
+```
+
+Add a subtitle and custom output file:
+
+```bash
+classbanners "Math 101" -s "Room 204" -o math.png
+```
+
+Customize colors and font size:
+
+```bash
+classbanners "Science Lab" -b "#2E7D32" -c "#FFFFFF" -f 64
+```
+
+Display the banner after generation:
+
+```bash
+classbanners "Physics" --show
+```
+
+### CLI Options
+
+| Option | Description |
+|--------|-------------|
+| `title` | Banner title text (required) |
+| `-s, --subtitle` | Subtitle text |
+| `-o, --output` | Output file path (default: banner.png) |
+| `-W, --width` | Banner width in pixels (default: 800) |
+| `-H, --height` | Banner height in pixels (default: 200) |
+| `-b, --background` | Background color as hex (default: #4A90D9) |
+| `-c, --color` | Text color as hex (default: #FFFFFF) |
+| `-f, --font-size` | Font size in points (default: 48) |
+| `--font` | Path to custom TTF font file |
+| `--show` | Display banner after generation |
 
 ### Python API
 
@@ -40,20 +108,7 @@ banner = generator.create_banner("Science Lab")
 banner.save("science_banner.png")
 ```
 
-### Command Line
-
-```bash
-# Basic usage
-classbanners "Welcome to Class"
-
-# With options
-classbanners "Math 101" -s "Room 204" -o math.png -b "#2E7D32" -f 64
-
-# Show the banner after generation
-classbanners "Physics" --show
-```
-
-## Configuration Options
+### Configuration Options
 
 | Option | Default | Description |
 |--------|---------|-------------|
@@ -70,17 +125,27 @@ classbanners "Physics" --show
 
 ## Development
 
+### Setup
+
 ```bash
+# Create and activate virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
 # Install with dev dependencies
 pip install -e ".[dev]"
+```
 
-# Run tests
+### Running Tests
+
+```bash
 pytest
+```
 
-# Run linter
+### Linting and Type Checking
+
+```bash
 ruff check .
-
-# Run type checker
 mypy src/
 ```
 
