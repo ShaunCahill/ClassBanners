@@ -60,6 +60,33 @@ class TestBannerConfig:
         with pytest.raises(ValueError, match="Border width cannot be negative"):
             BannerConfig(border_width=-1)
 
+    def test_invalid_background_color_raises_error(self) -> None:
+        """Test that invalid background color raises ValueError."""
+        with pytest.raises(ValueError, match="background_color must be a valid hex color"):
+            BannerConfig(background_color="invalid")
+
+    def test_invalid_text_color_raises_error(self) -> None:
+        """Test that invalid text color raises ValueError."""
+        with pytest.raises(ValueError, match="text_color must be a valid hex color"):
+            BannerConfig(text_color="red")
+
+    def test_invalid_border_color_raises_error(self) -> None:
+        """Test that invalid border color raises ValueError."""
+        with pytest.raises(ValueError, match="border_color must be a valid hex color"):
+            BannerConfig(border_color="#GGG")
+
+    def test_valid_short_hex_colors(self) -> None:
+        """Test that short hex colors are accepted."""
+        config = BannerConfig(background_color="#ABC", text_color="#FFF")
+        assert config.background_color == "#ABC"
+        assert config.text_color == "#FFF"
+
+    def test_valid_hex_colors_with_alpha(self) -> None:
+        """Test that hex colors with alpha channel are accepted."""
+        config = BannerConfig(background_color="#FF0000FF", text_color="#00FF00AA")
+        assert config.background_color == "#FF0000FF"
+        assert config.text_color == "#00FF00AA"
+
 
 class TestBanner:
     """Tests for Banner dataclass."""
