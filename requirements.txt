@@ -3,6 +3,3 @@
 
 # Image processing
 Pillow>=10.0.0
-
-# Font handling (for custom text rendering)
-fonttools>=4.40.0

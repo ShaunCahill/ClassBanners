@@ -1,10 +1,26 @@
 """Banner data models and configuration."""
 
+from __future__ import annotations
+
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Literal
+from typing import TYPE_CHECKING, Literal
 
-from PIL import Image
+if TYPE_CHECKING:
+    from PIL import Image
+
+
+# Regex pattern for hex color validation (3, 4, 6, or 8 hex digits)
+_HEX_COLOR_PATTERN = re.compile(r"^#(?:[0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$")
+
+
+def _validate_hex_color(color: str, field_name: str) -> None:
+    """Validate that a string is a valid hex color."""
+    if not _HEX_COLOR_PATTERN.match(color):
+        raise ValueError(
+            f"{field_name} must be a valid hex color (e.g., '#FF0000'), got '{color}'"
+        )
 
 
 @dataclass
@@ -34,6 +50,9 @@ class BannerConfig:
             raise ValueError("Padding cannot be negative")
         if self.border_width < 0:
             raise ValueError("Border width cannot be negative")
+        _validate_hex_color(self.background_color, "background_color")
+        _validate_hex_color(self.text_color, "text_color")
+        _validate_hex_color(self.border_color, "border_color")
 
 
 @dataclass
@@ -55,12 +74,12 @@ class Banner:
         """Set the banner image."""
         self._image = value
 
-    def save(self, path: Path | str, format: str | None = None) -> None:
+    def save(self, path: Path | str, image_format: str | None = None) -> None:
         """Save the banner to a file.
 
         Args:
             path: Output file path.
-            format: Image format (e.g., 'PNG', 'JPEG'). Auto-detected if None.
+            image_format: Image format (e.g., 'PNG', 'JPEG'). Auto-detected if None.
 
         Raises:
             ValueError: If no image has been generated.
@@ -70,7 +89,7 @@ class Banner:
 
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
-        self._image.save(path, format=format)
+        self._image.save(path, format=image_format)
 
     def show(self) -> None:
         """Display the banner image.

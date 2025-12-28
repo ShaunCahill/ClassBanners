@@ -1,8 +1,15 @@
 """Banner generation logic."""
 
+from __future__ import annotations
+
+import logging
+from pathlib import Path
+
 from PIL import Image, ImageDraw, ImageFont
 
 from classbanners.banner import Banner, BannerConfig
+
+logger = logging.getLogger(__name__)
 
 
 class BannerGenerator:
@@ -40,7 +47,7 @@ class BannerGenerator:
         subtitle_font = self._get_font(config.font_size // 2, config.font_path)
 
         # Calculate text positions
-        title_y = self._calculate_text_y(config, banner.subtitle)
+        title_y = self._calculate_text_y(config, bool(banner.subtitle))
         self._draw_text(
             draw,
             banner.title,
@@ -93,18 +100,21 @@ class BannerGenerator:
         return self.generate(banner)
 
     def _get_font(
-        self, size: int, font_path: str | None = None
+        self, size: int, font_path: Path | None = None
     ) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
         """Load a font at the specified size."""
         if font_path:
             try:
                 return ImageFont.truetype(str(font_path), size)
             except OSError:
-                pass
+                logger.warning(
+                    "Failed to load font '%s', falling back to default", font_path
+                )
         # Fall back to default font
         try:
             return ImageFont.truetype("DejaVuSans.ttf", size)
         except OSError:
+            logger.debug("DejaVuSans.ttf not found, using PIL default font")
             return ImageFont.load_default()
 
     def _draw_border(self, draw: ImageDraw.ImageDraw, config: BannerConfig) -> None:
