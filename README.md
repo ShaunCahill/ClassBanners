@@ -2,9 +2,18 @@
 
 Generate customizable class banners with Python.
 
+## Requirements
+
+- Python 3.9+
+- Pillow (installed automatically)
+
 ## Installation
 
 ```bash
+# Create and activate a virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
 # Install from source
 pip install -e .
 
@@ -71,6 +80,10 @@ classbanners "Physics" --show
 ## Development
 
 ```bash
+# Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
 # Install with dev dependencies
 pip install -e ".[dev]"
 
